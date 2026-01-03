@@ -1,0 +1,5 @@
+{
+  "name": "Global Admin Dashboard",
+  "description": "A clean and modern administrative interface for managing global state data, featuring a comprehensive edit form with audit tracking.",
+  "requestFramePermissions": []
+}
