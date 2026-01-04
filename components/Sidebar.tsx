@@ -21,6 +21,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, isO
   const entityItems = [
     { id: 'companies' as ViewType, label: 'Companies', icon: 'domain' },
     { id: 'customers' as ViewType, label: 'Customers', icon: 'person_add' },
+    { id: 'enquiries' as ViewType, label: 'Enquiries', icon: 'grid_view' },
+    { id: 'packages' as ViewType, label: 'Packages', icon: 'inventory_2' },
   ];
 
   const configurationItems = [
@@ -44,6 +46,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, isO
     if (currentView === itemId) return true;
     if (itemId === 'companies' && (currentView === 'edit-company' || currentView === 'view-company')) return true;
     if (itemId === 'customers' && (currentView === 'edit-customer' || currentView === 'view-customer')) return true;
+    if (itemId === 'enquiries' && (currentView === 'edit-enquiry' || currentView === 'view-enquiry')) return true;
+    if (itemId === 'packages' && (currentView === 'edit-package' || currentView === 'view-package')) return true;
     if (itemId === 'states' && (currentView === 'edit-state' || currentView === 'view-state')) return true;
     if (itemId === 'countries' && (currentView === 'edit-country' || currentView === 'view-country')) return true;
     if (itemId === 'cities' && (currentView === 'edit-city' || currentView === 'view-city')) return true;

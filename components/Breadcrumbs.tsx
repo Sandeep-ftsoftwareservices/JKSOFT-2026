@@ -12,17 +12,21 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ currentView, onNavigat
     { label: 'Home', view: 'dashboard' as ViewType },
   ];
 
-  if (currentView === 'billing-mapping' || currentView === 'edit-billing-mapping' || currentView === 'view-billing-mapping' || currentView === 'billing-types' || currentView === 'edit-billing-type' || currentView === 'view-billing-type' || currentView === 'company-levels' || currentView === 'edit-company-level' || currentView === 'view-company-level' || currentView === 'company-level-mapping' || currentView === 'entity-mapping' || currentView === 'edit-entity-mapping' || currentView === 'view-entity-mapping') {
-    items.push({ label: 'Configuration', view: 'dashboard' as ViewType });
-    // ... sub items
-  }
-
-  // Handle Customers
   if (currentView === 'customers' || currentView === 'edit-customer' || currentView === 'view-customer') {
     items.push({ label: 'Entities', view: 'dashboard' as ViewType });
     items.push({ label: 'Customers', view: 'customers' as ViewType });
     if (currentView === 'edit-customer') items.push({ label: 'Edit Profile', view: 'edit-customer' as ViewType });
     if (currentView === 'view-customer') items.push({ label: 'View Profile', view: 'view-customer' as ViewType });
+  } else if (currentView === 'enquiries' || currentView === 'edit-enquiry' || currentView === 'view-enquiry') {
+    items.push({ label: 'Entities', view: 'dashboard' as ViewType });
+    items.push({ label: 'Enquiry List', view: 'enquiries' as ViewType });
+    if (currentView === 'edit-enquiry') items.push({ label: 'Manage Enquiry', view: 'edit-enquiry' as ViewType });
+    if (currentView === 'view-enquiry') items.push({ label: 'Enquiry Details', view: 'view-enquiry' as ViewType });
+  } else if (currentView === 'packages' || currentView === 'edit-package' || currentView === 'view-package') {
+    items.push({ label: 'Entities', view: 'dashboard' as ViewType });
+    items.push({ label: 'Package Management', view: 'packages' as ViewType });
+    if (currentView === 'edit-package') items.push({ label: 'Edit Package', view: 'edit-package' as ViewType });
+    if (currentView === 'view-package') items.push({ label: 'Package Details', view: 'view-package' as ViewType });
   } else if (currentView === 'billing-mapping' || currentView === 'edit-billing-mapping' || currentView === 'view-billing-mapping' || currentView === 'billing-types' || currentView === 'edit-billing-type' || currentView === 'view-billing-type' || currentView === 'company-levels' || currentView === 'edit-company-level' || currentView === 'view-company-level' || currentView === 'company-level-mapping' || currentView === 'entity-mapping' || currentView === 'edit-entity-mapping' || currentView === 'view-entity-mapping') {
     items.push({ label: 'Configuration', view: 'dashboard' as ViewType });
     

@@ -63,6 +63,52 @@ export interface CustomerDetails {
   history?: AuditHistoryEntry[];
 }
 
+export interface EnquiryDetails {
+  id: string;
+  enquiryNo: string;
+  customerName: string;
+  mobileNo: string;
+  email: string;
+  date: string;
+  status: 'New' | 'In Progress' | 'Closed';
+  subject: string;
+  message: string;
+  assignedTo?: string;
+  audit: AuditInfo;
+}
+
+export interface PackageChannel {
+  id: string;
+  name: string;
+  category: string;
+  language: string;
+}
+
+export interface PackageDetails {
+  id: string;
+  name: string;
+  shortName: string;
+  grade: string;
+  description: string;
+  serviceCategory: 'Cable TV' | 'Broadband Internet' | 'IPTV';
+  msoBroadcaster: string;
+  creationDate: string;
+  inactiveFrom?: string;
+  isTaxInclusive: boolean;
+  baseRate: number;
+  taxPercentage: number;
+  totalAmount: number;
+  drp: number;
+  mrp: number;
+  isActive: boolean;
+  channels: PackageChannel[];
+  associations: {
+    activeCustomers: number;
+    pendingEnquiries: number;
+  };
+  audit: AuditInfo;
+}
+
 export interface StateDetails {
   id: string;
   fullName: string;
@@ -238,4 +284,6 @@ export type ViewType =
   | 'billing-types' | 'edit-billing-type' | 'view-billing-type'
   | 'company-levels' | 'edit-company-level' | 'view-company-level' | 'company-level-mapping'
   | 'entity-mapping' | 'edit-entity-mapping' | 'view-entity-mapping'
-  | 'customers' | 'edit-customer' | 'view-customer';
+  | 'customers' | 'edit-customer' | 'view-customer'
+  | 'enquiries' | 'edit-enquiry' | 'view-enquiry'
+  | 'packages' | 'edit-package' | 'view-package';

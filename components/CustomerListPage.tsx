@@ -23,7 +23,7 @@ export const CustomerListPage: React.FC<CustomerListPageProps> = ({
       const fullName = `${c.firstName} ${c.lastName}`.toLowerCase();
       return fullName.includes(searchTerm.toLowerCase()) || 
              c.accountNo.toLowerCase().includes(searchTerm.toLowerCase()) ||
-             c.mobile?.toLowerCase().includes(searchTerm.toLowerCase());
+             c.contacts.some(contact => contact.value.includes(searchTerm));
     });
   }, [customers, searchTerm]);
 

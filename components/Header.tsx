@@ -85,6 +85,14 @@ export const Header: React.FC<HeaderProps> = ({
                     <span className="material-symbols-outlined text-primary text-[20px]">person_add</span>
                     Customers
                   </button>
+                  <button onClick={() => handleNavClick('enquiries')} className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-[#111418] dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-left">
+                    <span className="material-symbols-outlined text-primary text-[20px]">grid_view</span>
+                    Enquiries
+                  </button>
+                  <button onClick={() => handleNavClick('packages')} className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-[#111418] dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-left">
+                    <span className="material-symbols-outlined text-primary text-[20px]">inventory_2</span>
+                    Packages
+                  </button>
                 </div>
               </div>
             )}

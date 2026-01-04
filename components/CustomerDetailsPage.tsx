@@ -48,6 +48,7 @@ export const CustomerDetailsPage: React.FC<CustomerDetailsPageProps> = ({
 
         <div className="grid grid-cols-12 gap-8">
           <div className="col-span-12 lg:col-span-8 flex flex-col gap-8">
+            {/* Core Info Grid */}
             <div className="bg-white dark:bg-[#1a2632] rounded-xl shadow-sm border border-[#e5e7eb] dark:border-[#2a3441] p-8">
                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   <div>
@@ -83,6 +84,7 @@ export const CustomerDetailsPage: React.FC<CustomerDetailsPageProps> = ({
                )}
             </div>
 
+            {/* Address Management Details */}
             <div className="bg-white dark:bg-[#1a2632] rounded-xl shadow-sm border border-[#e5e7eb] dark:border-[#2a3441]">
               <div className="px-6 py-4 border-b dark:border-[#2a3441] bg-gray-50/50 dark:bg-slate-800/30">
                 <h3 className="font-bold flex items-center gap-2"><span className="material-symbols-outlined text-primary">location_on</span> Addresses</h3>
@@ -96,8 +98,8 @@ export const CustomerDetailsPage: React.FC<CustomerDetailsPageProps> = ({
                     </div>
                     <p className="text-sm dark:text-gray-300 leading-relaxed mb-4">{addr.addressLine}<br/>{addr.city}, {addr.state} - {addr.pinCode}</p>
                     <div className="grid grid-cols-2 gap-4 pt-4 border-t border-dashed border-gray-200 dark:border-[#2a3441]">
-                       <div><span className="text-[10px] text-gray-500 uppercase">District</span><p className="text-xs font-semibold">{addr.district}</p></div>
-                       <div><span className="text-[10px] text-gray-500 uppercase">Area</span><p className="text-xs font-semibold">{addr.area}</p></div>
+                       <div><span className="text-[10px] text-gray-500 uppercase">District</span><p className="text-xs font-semibold dark:text-white">{addr.district}</p></div>
+                       <div><span className="text-[10px] text-gray-500 uppercase">Area</span><p className="text-xs font-semibold dark:text-white">{addr.area}</p></div>
                     </div>
                   </div>
                 ))}
@@ -114,6 +116,7 @@ export const CustomerDetailsPage: React.FC<CustomerDetailsPageProps> = ({
                <p className="text-xs text-[#617589] mt-1">Profile is {customer.isActiveProfile ? 'Active & Visible' : 'Inactive / Restricted'}</p>
             </div>
 
+            {/* Staff Card */}
             <div className="bg-white dark:bg-[#1a2632] rounded-xl shadow-sm border border-[#e5e7eb] dark:border-[#2a3441] p-6">
               <h3 className="text-sm font-bold uppercase tracking-widest text-[#617589] mb-6">Staff in Charge</h3>
               <div className="space-y-6">
@@ -128,6 +131,7 @@ export const CustomerDetailsPage: React.FC<CustomerDetailsPageProps> = ({
               </div>
             </div>
 
+            {/* Contacts Card */}
             <div className="bg-white dark:bg-[#1a2632] rounded-xl shadow-sm border border-[#e5e7eb] dark:border-[#2a3441] p-6">
               <h3 className="text-sm font-bold uppercase tracking-widest text-[#617589] mb-6">Contacts</h3>
               <div className="space-y-4">

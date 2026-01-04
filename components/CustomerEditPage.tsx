@@ -40,7 +40,6 @@ export const CustomerEditPage: React.FC<CustomerEditPageProps> = ({
   return (
     <div className="flex-1 overflow-y-auto bg-background-light dark:bg-background-dark">
       <main className="px-6 lg:px-12 py-8 max-w-[1440px] mx-auto w-full">
-        {/* Breadcrumbs & Page Header */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
           <div>
             <Breadcrumbs currentView="edit-customer" onNavigate={onNavigate} />
@@ -65,9 +64,8 @@ export const CustomerEditPage: React.FC<CustomerEditPageProps> = ({
         </div>
 
         <div className="grid grid-cols-12 gap-8">
-          {/* LEFT COLUMN (Main Info) */}
           <div className="col-span-12 lg:col-span-8 flex flex-col gap-8">
-            {/* Section 1: Customer Profile */}
+            {/* Customer Profile Section */}
             <div className="bg-white dark:bg-[#1a2632] rounded-xl shadow-sm border border-[#e5e7eb] dark:border-[#2a3441] overflow-hidden">
               <div className="px-6 py-4 border-b border-[#e5e7eb] dark:border-[#2a3441] flex justify-between items-center">
                 <h3 className="text-lg font-bold flex items-center gap-2">
@@ -161,7 +159,7 @@ export const CustomerEditPage: React.FC<CustomerEditPageProps> = ({
               </div>
             </div>
 
-            {/* Section 2: Unique Identifiers */}
+            {/* Unique Identifiers Section */}
             <div className="bg-white dark:bg-[#1a2632] rounded-xl shadow-sm border border-[#e5e7eb] dark:border-[#2a3441] overflow-hidden">
               <div className="px-6 py-4 border-b border-[#e5e7eb] dark:border-[#2a3441]">
                 <h3 className="text-lg font-bold flex items-center gap-2">
@@ -189,7 +187,7 @@ export const CustomerEditPage: React.FC<CustomerEditPageProps> = ({
               </div>
             </div>
 
-            {/* Section 3: Addresses & Contacts (Tabbed) */}
+            {/* Tabs for Address and Contacts */}
             <div className="bg-white dark:bg-[#1a2632] rounded-xl shadow-sm border border-[#e5e7eb] dark:border-[#2a3441] overflow-hidden min-h-[400px]">
               <div className="border-b border-[#e5e7eb] dark:border-[#2a3441] px-6">
                 <div className="flex gap-8">
@@ -280,7 +278,7 @@ export const CustomerEditPage: React.FC<CustomerEditPageProps> = ({
             </div>
           </div>
 
-          {/* RIGHT COLUMN (Sidebar Info) */}
+          {/* Right Column Sidebar Info */}
           <div className="col-span-12 lg:col-span-4 flex flex-col gap-8">
             {/* Status Card */}
             <div className="bg-white dark:bg-[#1a2632] rounded-xl shadow-sm border border-[#e5e7eb] dark:border-[#2a3441] p-6">
@@ -337,28 +335,7 @@ export const CustomerEditPage: React.FC<CustomerEditPageProps> = ({
               </div>
             </div>
 
-            {/* Primary Contact (Preview) */}
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-[#1e2a3b] dark:to-[#1a202c] rounded-xl shadow-sm border border-blue-100 dark:border-[#2a3441] p-6">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-sm font-bold uppercase tracking-wider text-blue-900 dark:text-blue-100">Primary Contact</h3>
-                <button onClick={() => setActiveTab('contact')} className="text-primary hover:text-blue-700 dark:text-blue-400 text-xs font-bold underline">Manage</button>
-              </div>
-              <div className="flex flex-col gap-3">
-                {formData.contacts.filter(c => c.isPrimary).map(contact => (
-                  <div key={contact.id} className="flex items-start gap-3">
-                    <div className="size-8 rounded-full bg-white dark:bg-[#111418] flex items-center justify-center text-primary shadow-sm">
-                      <span className="material-symbols-outlined text-[16px]">{contact.type === 'Email' ? 'mail' : 'call'}</span>
-                    </div>
-                    <div>
-                      <p className="text-xs text-gray-500 dark:text-gray-400">{contact.label}</p>
-                      <p className="text-sm font-medium text-[#111418] dark:text-white">{contact.value}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Audit Information */}
+            {/* Audit Log (Short version) */}
             <div className="p-4 rounded-lg bg-transparent border border-dashed border-[#dbe0e6] dark:border-[#3e4c5a]">
               <h4 className="text-xs font-bold text-[#617589] uppercase mb-3 tracking-widest">Audit Information</h4>
               <ul className="space-y-2 text-xs text-[#617589] dark:text-gray-500">
