@@ -11,14 +11,24 @@ interface SidebarProps {
 
 export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, isOpen, onClose }) => {
   const [isGeolocationExpanded, setIsGeolocationExpanded] = useState(true);
-  const [isEntityExpanded, setIsEntityExpanded] = useState(false);
+  const [isEntityExpanded, setIsEntityExpanded] = useState(true);
+  const [isConfigurationExpanded, setIsConfigurationExpanded] = useState(true);
 
   const topNavItems = [
     { id: 'dashboard' as ViewType, label: 'Dashboard', icon: 'dashboard' },
   ];
 
-  const entityItems: { id: ViewType; label: string; icon: string }[] = [
-    // Future entity modules will be listed here
+  const entityItems = [
+    { id: 'companies' as ViewType, label: 'Companies', icon: 'domain' },
+    { id: 'customers' as ViewType, label: 'Customers', icon: 'person_add' },
+  ];
+
+  const configurationItems = [
+    { id: 'entity-mapping' as ViewType, label: 'Company Business Entity mapping', icon: 'hub' },
+    { id: 'billing-types' as ViewType, label: 'Billing Types', icon: 'list_alt' },
+    { id: 'billing-mapping' as ViewType, label: 'Company Billing Type mapping', icon: 'receipt_long' },
+    { id: 'company-levels' as ViewType, label: 'Company Levels', icon: 'layers' },
+    { id: 'company-level-mapping' as ViewType, label: 'Business Entity Company Level mapping', icon: 'link' },
   ];
 
   const geolocationItems = [
@@ -32,12 +42,19 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, isO
 
   const isActive = (itemId: ViewType) => {
     if (currentView === itemId) return true;
+    if (itemId === 'companies' && (currentView === 'edit-company' || currentView === 'view-company')) return true;
+    if (itemId === 'customers' && (currentView === 'edit-customer' || currentView === 'view-customer')) return true;
     if (itemId === 'states' && (currentView === 'edit-state' || currentView === 'view-state')) return true;
     if (itemId === 'countries' && (currentView === 'edit-country' || currentView === 'view-country')) return true;
     if (itemId === 'cities' && (currentView === 'edit-city' || currentView === 'view-city')) return true;
     if (itemId === 'districts' && (currentView === 'edit-district' || currentView === 'view-district')) return true;
     if (itemId === 'areas' && (currentView === 'edit-area' || currentView === 'view-area')) return true;
     if (itemId === 'view-colony' && (currentView === 'edit-colony' || currentView === 'view-colony-details')) return true;
+    if (itemId === 'company-levels' && (currentView === 'edit-company-level' || currentView === 'view-company-level')) return true;
+    if (itemId === 'billing-types' && (currentView === 'edit-billing-type' || currentView === 'view-billing-type')) return true;
+    if (itemId === 'billing-mapping' && (currentView === 'edit-billing-mapping' || currentView === 'view-billing-mapping')) return true;
+    if (itemId === 'company-level-mapping' && (currentView === 'company-level-mapping')) return true;
+    if (itemId === 'entity-mapping' && (currentView === 'edit-entity-mapping' || currentView === 'view-entity-mapping')) return true;
     return false;
   };
 
@@ -48,11 +65,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, isO
     }
   };
 
-  const NavButton = ({ item }: { item: { id: ViewType; label: string; icon: string } }) => {
+  const NavButton: React.FC<{ item: { id: ViewType; label: string; icon: string } }> = ({ item }) => {
     const active = isActive(item.id);
     return (
       <button
-        key={item.id}
         onClick={() => handleNavClick(item.id)}
         className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all group w-full text-left ${
           active
@@ -63,14 +79,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, isO
         <span className={`material-symbols-outlined text-[22px] transition-colors ${active ? 'text-primary' : 'group-hover:text-primary'}`}>
           {item.icon}
         </span>
-        <span className="text-sm tracking-tight">{item.label}</span>
+        <span className="text-sm tracking-tight leading-snug">{item.label}</span>
       </button>
     );
   };
 
   return (
     <>
-      {/* Mobile Overlay */}
       {isOpen && (
         <div 
           className="fixed inset-0 bg-black/60 z-30 lg:hidden transition-opacity duration-300"
@@ -91,14 +106,12 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, isO
           </div>
           
           <nav className="flex flex-col gap-6">
-            {/* Top Level Items */}
             <div className="flex flex-col gap-1.5">
               {topNavItems.map((item) => (
                 <NavButton key={item.id} item={item} />
               ))}
             </div>
 
-            {/* Entity Group */}
             <div className="flex flex-col gap-1.5">
               <button 
                 onClick={() => setIsEntityExpanded(!isEntityExpanded)}
@@ -114,13 +127,27 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, isO
                 {entityItems.map((item) => (
                   <NavButton key={item.id} item={item} />
                 ))}
-                {entityItems.length === 0 && (
-                  <div className="px-3 py-2 text-[10px] text-gray-400 italic">No modules assigned</div>
-                )}
               </div>
             </div>
 
-            {/* Geolocation Group */}
+            <div className="flex flex-col gap-1.5">
+              <button 
+                onClick={() => setIsConfigurationExpanded(!isConfigurationExpanded)}
+                className="flex items-center justify-between px-3 mb-1 w-full text-left group/config transition-colors outline-none"
+              >
+                <span className="text-[11px] font-bold text-[#617589] dark:text-gray-500 uppercase tracking-[0.1em] group-hover/config:text-primary">Configuration</span>
+                <span className={`material-symbols-outlined text-[18px] text-[#617589] transition-transform duration-300 ${isConfigurationExpanded ? 'rotate-180' : ''}`}>
+                  expand_more
+                </span>
+              </button>
+              
+              <div className={`flex flex-col gap-1 transition-all duration-300 overflow-hidden ${isConfigurationExpanded ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                {configurationItems.map((item) => (
+                  <NavButton key={item.id} item={item} />
+                ))}
+              </div>
+            </div>
+
             <div className="flex flex-col gap-1.5">
               <button 
                 onClick={() => setIsGeolocationExpanded(!isGeolocationExpanded)}
